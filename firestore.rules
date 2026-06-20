@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Rooms — anyone can read; create with valid shape; owner can update/delete
+    match /rooms/{roomId} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasAll([
+        'name','passwordHash','ownerId','ownerName',
+        'createdAt','expiresAt','isActive'
+      ]);
+      allow update: if true;
+      allow delete: if true;
+    }
+
+    // Messages — text, image, file, and audio (voice note).
+    // Media messages carry a Cloudinary URL + metadata instead of (or alongside) `content`.
+    match /messages/{messageId} {
+      allow read:   if true;
+      allow create: if request.resource.data.keys().hasAll([
+        'roomId','senderId','senderName','type','content','timestamp'
+      ]) && request.resource.data.type in ['text', 'image', 'file', 'audio'];
+      allow delete: if true;
+    }
+
+    // Active users / presence
+    match /activeUsers/{docId} {
+      allow read, write: if true;
+    }
+
+    // Typing indicators
+    match /typing/{docId} {
+      allow read, write: if true;
+    }
+  }
+}
