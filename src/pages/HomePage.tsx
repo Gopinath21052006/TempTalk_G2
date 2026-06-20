@@ -99,15 +99,29 @@ export function HomePage() {
     <div className="min-h-screen bg-surface-950 flex flex-col">
       {/* Nav */}
       <nav className="px-5 py-4 border-b border-surface-800/50">
-        <div className="max-w-5xl mx-auto flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center shadow-md">
-            <MessageSquare size={17} className="text-white" />
-          </div>
-          <span className="font-bold text-surface-100 tracking-tight">TempTalk</span>
-          <span className="text-[10px] font-semibold bg-primary-500/15 text-primary-400 px-2 py-0.5 rounded-full border border-primary-500/20">
-            G2
-          </span>
-        </div>
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+  <div className="flex items-center gap-2.5">
+    <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center shadow-md">
+      <MessageSquare size={17} className="text-white" />
+    </div>
+
+    <span className="font-bold text-surface-100 tracking-tight">
+      TempTalk
+    </span>
+
+    <span className="text-[10px] font-semibold bg-primary-500/15 text-primary-400 px-2 py-0.5 rounded-full border border-primary-500/20">
+      G2
+    </span>
+  </div>
+
+  <a
+    href="/TempTalk-g2.apk"
+    download
+    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-500 hover:bg-primary-600 text-white text-xs font-semibold transition-all duration-200 shadow-md"
+  >
+    📱 App
+  </a>
+</div>
       </nav>
 
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-10">
